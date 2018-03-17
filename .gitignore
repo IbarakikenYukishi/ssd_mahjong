@@ -11,6 +11,9 @@ __pycache__/
 #HDF5
 *.hdf5
 
+/PASCAL_VOC/VOCdevkit/
+/PASCAL_VOC/VOC2007.pkl
+
 # Distribution / packaging
 .Python
 env/
