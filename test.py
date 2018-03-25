@@ -23,30 +23,30 @@ config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.45
 set_session(tf.Session(config=config))
 
-voc_classes = ['Aeroplane', 'Bicycle', 'Bird', 'Boat', 'Bottle',
-               'Bus', 'Car', 'Cat', 'Chair', 'Cow', 'Diningtable',
-               'Dog', 'Horse','Motorbike', 'Person', 'Pottedplant',
-               'Sheep', 'Sofa', 'Train', 'Tvmonitor']
+voc_classes = ['e','s','w','n','haku','hatsu','tyun',
+        '1s','2s','3s','4s','5s','6s','7s','8s','9s',
+        '1m','2m','3m','4m','5m','6m','7m','8m','9m',
+        '1p','2p','3p','4p','5p','6p','7p','8p','9p']
 NUM_CLASSES = len(voc_classes) + 1
 
 input_shape=(300, 300, 3)
 model = SSD300(input_shape, num_classes=NUM_CLASSES)
-model.load_weights('weights_SSD300.hdf5', by_name=True)
+model.load_weights('weights_mahjong.hdf5', by_name=True)
 bbox_util = BBoxUtility(NUM_CLASSES)
 
 inputs = []
 images = []
-img_path = './pics/23.jpg'
+img_path = './pics/migi.jpg'
 img = image.load_img(img_path, target_size=(300, 300))
 img = image.img_to_array(img)
 images.append(imread(img_path))
 inputs.append(img.copy())
-img_path = './pics/cat.jpg'
+img_path = './pics/2.png'
 img = image.load_img(img_path, target_size=(300, 300))
 img = image.img_to_array(img)
 images.append(imread(img_path))
 inputs.append(img.copy())
-img_path = './pics/boys.jpg'
+img_path = './pics/113.png'
 img = image.load_img(img_path, target_size=(300, 300))
 img = image.img_to_array(img)
 images.append(imread(img_path))
@@ -89,7 +89,7 @@ for i, img in enumerate(images):
     top_xmax = det_xmax[top_indices]
     top_ymax = det_ymax[top_indices]
 
-    colors = plt.cm.hsv(np.linspace(0, 1, 21)).tolist()
+    colors = plt.cm.hsv(np.linspace(0, 1, NUM_CLASSES)).tolist()
 
     plt.imshow(img / 255.)
     currentAxis = plt.gca()
