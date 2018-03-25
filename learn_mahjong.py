@@ -221,7 +221,7 @@ class Generator(object):
 path_prefix = 'PASCAL_VOC/Mdevkit/Mahjong_datasets/PNGImages/'
 print("val_keys="+str(len(val_keys)))
 
-gen = Generator(gt, bbox_util, 4, path_prefix,
+gen = Generator(gt, bbox_util, 32, path_prefix,
                 train_keys, val_keys,
                 (input_shape[0], input_shape[1]), do_crop=False)
 print(input_shape)
@@ -251,7 +251,7 @@ optim = keras.optimizers.Adam(lr=base_lr)
 model.compile(optimizer=optim,
               loss=MultiboxLoss(NUM_CLASSES, neg_pos_ratio=2.0).compute_loss)
 
-nb_epoch = 500
+nb_epoch = 3000
 
 history = model.fit_generator(gen.generate(True), gen.train_batches,
                               nb_epoch, verbose=1,
