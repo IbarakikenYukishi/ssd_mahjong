@@ -23,7 +23,7 @@ np.set_printoptions(suppress=True)
 
 # 21
 NUM_CLASSES = 35 #4
-input_shape = (300, 300, 3)
+input_shape = (512, 512, 3)
 
 priors = pickle.load(open('prior_boxes_ssd300.pkl', 'rb'))
 
